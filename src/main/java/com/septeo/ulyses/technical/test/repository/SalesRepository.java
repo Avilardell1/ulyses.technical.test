@@ -33,4 +33,6 @@ public interface  SalesRepository {
     Optional<List<Sales>> findAllByBrandId(Long brandId);
 
     Optional<List<Sales>> findAllByVehicleId(Long vehicleId);
+
+    Optional<List<Sales>> findBestSales(LocalDate startDate, LocalDate endDate);
 }

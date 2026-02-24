@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -41,6 +42,14 @@ public class SalesController {
     @GetMapping("/vehicles/{vehicleId}")
     public ResponseEntity<List<Sales>> getSalesByVehicleId(@PathVariable Long vehicleId) {
         return salesService.getSalesByVehicleId(vehicleId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/vehicles/bestSelling")
+    public ResponseEntity<List<Sales>> getBestSales(@RequestParam(required = false) LocalDate startDate,
+                                                    @RequestParam(required = false) LocalDate endDate) {
+        return salesService.getBestSales(startDate,endDate)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

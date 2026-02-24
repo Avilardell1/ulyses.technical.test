@@ -2,6 +2,7 @@ package com.septeo.ulyses.technical.test.service;
 
 import com.septeo.ulyses.technical.test.entity.Sales;
 import org.springframework.data.domain.Pageable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,4 +41,13 @@ public interface SalesService {
      * @return an Optional containing the list of sales if found, or empty list if not found
      */
     Optional<List<Sales>> getSalesByVehicleId(Long vehicleId);
+
+    /**
+     * Get top 5 of best sales
+     *
+     * @param startDate the start date of the sales to filter
+     * @param endDate the end date of the sales to filter
+     * @return an Optional containing the list of sales if found, or empty list if not found
+     */
+    Optional<List<Sales>> getBestSales(LocalDate startDate, LocalDate endDate);
 }

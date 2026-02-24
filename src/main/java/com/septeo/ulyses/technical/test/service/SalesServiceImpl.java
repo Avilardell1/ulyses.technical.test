@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,8 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public Optional<List<Sales>> getSalesByVehicleId(Long vehicleId) { return salesRepository.findAllByVehicleId(vehicleId); }
+
+    @Override
+    public Optional<List<Sales>> getBestSales(LocalDate startDate, LocalDate endDate) { return salesRepository.findBestSales(startDate, endDate); }
 
 }
