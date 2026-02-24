@@ -1,10 +1,7 @@
 package com.septeo.ulyses.technical.test.service;
 
-import com.septeo.ulyses.technical.test.entity.Brand;
 import com.septeo.ulyses.technical.test.entity.Sales;
-import com.septeo.ulyses.technical.test.entity.Vehicle;
-
-import java.time.LocalDate;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +15,7 @@ public interface SalesService {
      *
      * @return a list of all sales
      */
-    List<Sales> getAllSales();
+    List<Sales> getAllSales(Pageable page);
 
     /**
      * Get a sales by its ID.
@@ -28,4 +25,19 @@ public interface SalesService {
      */
     Optional<Sales> getSalesById(Long id);
 
+    /**
+     * Get all sales by given brandId.
+     *
+     * @param brandId the ID of the brand to find
+     * @return an Optional containing the list of sales if found, or empty list if not found
+     */
+    Optional<List<Sales>> getSalesByBrandId(Long brandId);
+
+    /**
+     * Get all sales by given vehicleId
+     *
+     * @param vehicleId the ID of the vehicle to find
+     * @return an Optional containing the list of sales if found, or empty list if not found
+     */
+    Optional<List<Sales>> getSalesByVehicleId(Long vehicleId);
 }

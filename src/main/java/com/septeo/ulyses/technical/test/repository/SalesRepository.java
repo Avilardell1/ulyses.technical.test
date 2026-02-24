@@ -3,6 +3,7 @@ package com.septeo.ulyses.technical.test.repository;
 import com.septeo.ulyses.technical.test.entity.Brand;
 import com.septeo.ulyses.technical.test.entity.Sales;
 import com.septeo.ulyses.technical.test.entity.Vehicle;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -13,13 +14,13 @@ import java.util.Optional;
  * Repository interface for Sales entity.
  */
 @Repository
-public interface SalesRepository {
+public interface  SalesRepository {
     /**
      * Find all sales.
      *
      * @return a list of all sales
      */
-    List<Sales> findAll();
+    List<Sales> findAll(Pageable pageable);
 
     /**
      * Find a sale by its ID.
@@ -29,4 +30,7 @@ public interface SalesRepository {
      */
     Optional<Sales> findById(Long id);
 
+    Optional<List<Sales>> findAllByBrandId(Long brandId);
+
+    Optional<List<Sales>> findAllByVehicleId(Long vehicleId);
 }

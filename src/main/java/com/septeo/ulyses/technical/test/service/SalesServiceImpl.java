@@ -3,6 +3,7 @@ package com.septeo.ulyses.technical.test.service;
 import com.septeo.ulyses.technical.test.entity.Sales;
 import com.septeo.ulyses.technical.test.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +25,8 @@ public class SalesServiceImpl implements SalesService {
      * {@inheritDoc}
      */
     @Override
-    public List<Sales> getAllSales() {
-        return salesRepository.findAll();
+    public List<Sales> getAllSales(Pageable pageable) {
+        return salesRepository.findAll(pageable);
     }
 
     /**
@@ -35,5 +36,11 @@ public class SalesServiceImpl implements SalesService {
     public Optional<Sales> getSalesById(Long id) {
         return salesRepository.findById(id);
     }
+
+    @Override
+    public Optional<List<Sales>> getSalesByBrandId(Long brandId) { return salesRepository.findAllByBrandId(brandId); }
+
+    @Override
+    public Optional<List<Sales>> getSalesByVehicleId(Long vehicleId) { return salesRepository.findAllByVehicleId(vehicleId); }
 
 }
