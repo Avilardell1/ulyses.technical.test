@@ -1,12 +1,8 @@
 package com.septeo.ulyses.technical.test.repository;
 
-import com.septeo.ulyses.technical.test.entity.Brand;
 import com.septeo.ulyses.technical.test.entity.Sales;
-import com.septeo.ulyses.technical.test.entity.Vehicle;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +29,4 @@ public interface  SalesRepository {
     Optional<List<Sales>> findAllByBrandId(Long brandId);
 
     Optional<List<Sales>> findAllByVehicleId(Long vehicleId);
-
-    Optional<List<Sales>> findBestSales(LocalDate startDate, LocalDate endDate);
 }

@@ -1,12 +1,9 @@
 package com.septeo.ulyses.technical.test.repository;
 
-import com.septeo.ulyses.technical.test.entity.Brand;
 import com.septeo.ulyses.technical.test.entity.Sales;
-import com.septeo.ulyses.technical.test.entity.Vehicle;
 import jakarta.persistence.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,23 +56,6 @@ public class SalesRepositoryImpl implements SalesRepository {
         query.setParameter("id", vehicleId);
         List<Sales> result = query.getResultList();
 
-        return result.isEmpty() ? Optional.empty() : Optional.of(result);
-    }
-
-    @Override
-    public Optional<List<Sales>> findBestSales(LocalDate startDate, LocalDate endDate) {
-        TypedQuery<Sales> query = null;
-        String stringQuery = "SELECT s FROM Sales s";
-        if (startDate != null && endDate != null) {
-            stringQuery += " WHERE s.saleDate BETWEEN :startDate AND :endDate ORDER BY s.price DESC LIMIT 5";
-            query = entityManager.createQuery(stringQuery, Sales.class);
-            query.setParameter("startDate", startDate);
-            query.setParameter("endDate", endDate);
-        } else {
-            stringQuery += " ORDER BY s.price DESC LIMIT 5";
-            query = entityManager.createQuery(stringQuery, Sales.class);
-        }
-        List<Sales> result = query.getResultList();
         return result.isEmpty() ? Optional.empty() : Optional.of(result);
     }
 }
